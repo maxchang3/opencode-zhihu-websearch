@@ -1,21 +1,27 @@
-import plugin from "../src/index.ts"
+import plugin from '../src/index.ts'
 
-type Credential = { type: "key"; key: string }
+type Credential = { type: 'key'; key: string }
 
 type RegisteredProvider = {
   id: string
   name: string
-  execute: (input: { query: string }, context: { signal: AbortSignal }) => Promise<readonly Record<string, unknown>[]>
+  execute: (
+    input: { query: string },
+    context: { signal: AbortSignal },
+  ) => Promise<readonly Record<string, unknown>[]>
 }
 
-type IntegrationMethod = { integrationID: string; method: { type: string; names?: readonly string[] } }
+type IntegrationMethod = {
+  integrationID: string
+  method: { type: string; names?: readonly string[] }
+}
 
 export function createHarness(
   options: Record<string, unknown> = {},
-  credential: Credential | null = { type: "key", key: "test-key" },
+  credential: Credential | null = { type: 'key', key: 'test-key' },
 ) {
   let provider: RegisteredProvider | undefined
-  let integrationName = ""
+  let integrationName = ''
   const methods: IntegrationMethod[] = []
 
   const ctx = {
@@ -24,7 +30,7 @@ export function createHarness(
       transform: async (callback: (editor: unknown) => void) => {
         callback({
           update: (_id: string, update: (integration: { name: string }) => void) => {
-            const integration = { name: "" }
+            const integration = { name: '' }
             update(integration)
             integrationName = integration.name
           },
@@ -32,12 +38,14 @@ export function createHarness(
         })
       },
       connection: {
-        active: async () => (credential ? { id: "connection" } : undefined),
+        active: async () => (credential ? { id: 'connection' } : undefined),
         resolve: async () => credential,
       },
     },
     websearch: {
-      transform: async (callback: (editor: { add: (definition: RegisteredProvider) => void }) => void) => {
+      transform: async (
+        callback: (editor: { add: (definition: RegisteredProvider) => void }) => void,
+      ) => {
         callback({
           add: (definition) => {
             provider = definition
@@ -58,7 +66,7 @@ export function createHarness(
 }
 
 export function json(body: unknown) {
-  return new Response(JSON.stringify(body), { headers: { "content-type": "application/json" } })
+  return new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } })
 }
 
 const servers: Array<{ stop: () => void }> = []

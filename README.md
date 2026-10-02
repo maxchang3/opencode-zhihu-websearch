@@ -21,7 +21,7 @@ Or add it to `opencode.jsonc`:
 {
   "$schema": "https://opencode.ai/config.json",
   "plugins": ["opencode-zhihu-websearch"],
-  "websearch": { "provider": "zhihu" }
+  "websearch": { "provider": "zhihu" },
 }
 ```
 
@@ -40,18 +40,18 @@ Plugin options are optional:
   "plugins": [
     {
       "package": "opencode-zhihu-websearch",
-      "options": { "count": 8, "searchDB": "realtime" }
-    }
-  ]
+      "options": { "count": 8, "searchDB": "realtime" },
+    },
+  ],
 }
 ```
 
-| Option | Values | Default | Description |
-| --- | --- | --- | --- |
-| `count` | 1-20 | `10` | Number of results |
-| `searchDB` | `all`, `realtime`, `static` | `all` | Search index |
-| `filter` | Filter expression | none | Filter results by site or publish time |
-| `endpoint` | URL | Zhihu Global Search API | Override the search endpoint |
+| Option     | Values                      | Default                 | Description                            |
+| ---------- | --------------------------- | ----------------------- | -------------------------------------- |
+| `count`    | 1-20                        | `10`                    | Number of results                      |
+| `searchDB` | `all`, `realtime`, `static` | `all`                   | Search index                           |
+| `filter`   | Filter expression           | none                    | Filter results by site or publish time |
+| `endpoint` | URL                         | Zhihu Global Search API | Override the search endpoint           |
 
 `filter` uses Zhihu's [filter syntax](https://developer.zhihu.com/docs?key=global_search): `host` supports `==` and `!=` with a double-quoted value, `publish_time` (Unix seconds) supports `==`, `!=`, `>`, `>=`, `<` and `<=`, and conditions combine with uppercase `AND`/`OR` and parentheses. Filtering on `zhihu.com` itself is not supported. Escape the quotes in JSON:
 

@@ -2,29 +2,44 @@
   "name": "opencode-zhihu-websearch",
   "version": "0.0.1",
   "description": "Zhihu Web Search as an OpenCode websearch provider",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "search",
+    "websearch",
+    "zhihu"
+  ],
+  "homepage": "https://github.com/maxchang3/opencode-zhihu-websearch#readme",
+  "bugs": {
+    "url": "https://github.com/maxchang3/opencode-zhihu-websearch/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxchang3/opencode-zhihu-websearch.git"
+  },
+  "files": [
+    "src"
+  ],
   "type": "module",
   "main": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": [
-    "src"
-  ],
-  "license": "MIT",
-  "keywords": [
-    "opencode",
-    "opencode-plugin",
-    "zhihu",
-    "websearch",
-    "search"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maxchang3/opencode-zhihu-websearch.git"
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "test:live": "LIVE=1 bun test test/live.test.ts",
+    "test:pack": "PACK=1 bun test test/pack.test.ts",
+    "prepublishOnly": "bun run typecheck && bun run test",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
-  "homepage": "https://github.com/maxchang3/opencode-zhihu-websearch#readme",
-  "bugs": {
-    "url": "https://github.com/maxchang3/opencode-zhihu-websearch/issues"
+  "devDependencies": {
+    "@opencode/plugin": "2.0.21",
+    "@types/bun": "latest",
+    "oxlint": "^1.86.0",
+    "typescript": "^5"
   },
   "peerDependencies": {
     "@opencode/plugin": ">=2.0.16 <3"
@@ -34,19 +49,7 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@opencode/plugin": "2.0.21",
-    "@types/bun": "latest",
-    "typescript": "^5"
-  },
   "engines": {
     "bun": ">=1.2.0"
-  },
-  "scripts": {
-    "typecheck": "tsc --noEmit",
-    "test": "bun test",
-    "test:live": "LIVE=1 bun test test/live.test.ts",
-    "test:pack": "PACK=1 bun test test/pack.test.ts",
-    "prepublishOnly": "bun run typecheck && bun run test"
   }
 }
