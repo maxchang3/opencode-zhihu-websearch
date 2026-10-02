@@ -1,5 +1,7 @@
 # opencode-zhihu-websearch
 
+English | [简体中文](README.zh.md)
+
 Zhihu Web Search ([Global Search](https://developer.zhihu.com/docs?key=global_search)) as an [OpenCode](https://opencode.ai) websearch provider.
 
 > Zhihu Global Search is a high-trust search service for AI applications, combining high-quality Zhihu content with authoritative web sources to deliver real-time, structured, and traceable results. It offers high-quality, highly relevant results for **Chinese-language** queries.
